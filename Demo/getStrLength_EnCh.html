@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>限制input中的长度</title>
+	<style type="text/css">
+		body{background-color: #c2e0ec;}
+		.box{text-align:center;}
+		input{width:90%; height:22px; margin:200px auto 50px; padding:10px; display: block; }
+		.box span{color: #e438d6;}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<input type="text" onkeyup="this.value=limitLength(this,10)" onblur="this.value=limitLength(this,10)" placeholder="最多输入10位字符">
+		<p>当前 Input 中包括了 <span id="showLength">0</span> 位字符（包含中英文）</p>
+	</div>
+
+	<script type="text/javascript">
+	//@ Limit a string'length that containing numbers, letters, Chinese and symbols...
+	function limitLength(element,limit) {
+    	var str = element.value;
+    	var len = 0, i = 0;
+    	while (len < limit && i < str.length) {
+    	    len += 1;
+    	    if (str.substring(i, i + 1).match(/[\u4e00-\u9fa5]/)) len += 1; //一个中文相当于2个英文
+    	    i += 1;
+    	}
+
+     //此行代码只用来显示框内字符串长度，真实案例中可删除 --- Start --- 	
+     document.getElementById("showLength").innerHTML = getStrLength_EnCn(str.substring(0, i));
+     //此行代码只用来显示框内字符串长度，真实案例中可删除 --- End ----- 
+
+	 return str.substring(0, i);
+	}
+
+	//@ 判断一个包含中英文字符串的长度
+	function getStrLength_EnCn(str) {
+ 	   var cArr = str.match(/[^\x00-\xff]/ig);
+ 	   return str.length + (cArr == null ? 0 : cArr.length);
+	}
+	</script>
+
+</body>
+</html>

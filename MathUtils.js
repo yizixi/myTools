@@ -1,19 +1,21 @@
 /**
- * Created by yizixi on 2017/6/17.
- */
+ * Created by Yizixi on 2017/6/17.
+**/
 
+//@ 算术，算法
 var arithmetic = {
 
 
-};
+}; //@ End of arithmetic
 
+//@ 数字处理
 var numberHandle = {
-    /****** 保留几位小数 **********
+/****** 保留几位小数，截断，非四舍五入 **********
 	num - [Number,String] - 源数字
 	floatLen - [Nunber] - 小数点后保留几位
 	unit - [String] - 单位
-	*******************************/
-    function：formatNum(num, floatLen, unit) {
+************************************************/
+    formatNum:function (num, floatLen, unit) {
     var aNum = (num + '').split('.');
     var aStr = [], aNewStr = [];
     aStr = aNum[0].split('');
@@ -30,4 +32,6 @@ var numberHandle = {
     return aStr.join('') + floatStr + (unit ? unit : '');
 	}
 
-};
+
+
+}; //@ End of numberHandle
